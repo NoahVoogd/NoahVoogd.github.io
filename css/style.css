@@ -1,0 +1,222 @@
+body, html 
+{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+    overflow: hidden;
+    
+    font-family: "Open Sans";
+}
+
+/*HI-------------------------------------------*/
+
+#section-hi 
+{
+    background-color: #FFCC33;
+    text-transform: uppercase;
+}
+
+#section-hi #main-text
+{
+    height: 100%;
+    width: 100%;
+}
+
+#section-hi #hi-container
+{
+    position: absolute;
+
+    width: 50%;
+    margin-left: 25%;
+}
+
+#hi-container
+{
+    height: inherit;
+    width: inherit;
+}
+
+#hi-there,
+#who,
+#what
+{
+    position: absolute;
+
+    height: 50%;
+    width: 100%;
+
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#hi-there
+{
+    background-image: url("../imgs/landing_page/base_text.svg");
+}
+
+#who
+{
+    background-image: url("../imgs/landing_page/noah.svg");
+}
+
+#what
+{
+    background-image: url("../imgs/landing_page/things.svg");
+}
+
+/*WHY------------------------------------------*/
+
+#section-why
+{
+    background-color: #FAFAFA;
+}
+
+/*WHAT CODE------------------------------------*/
+
+#section-what-code
+{
+    background-color: #23281A;
+}
+
+/*WHAT ART-------------------------------------*/
+
+#section-what-art
+{
+    background-color: #23281A;
+}
+
+/*HOW------------------------------------------*/
+
+#section-how
+{
+    background-color: #333333;
+}
+
+/*WHO------------------------------------------*/
+
+#section-who
+{
+    background-color: #FAFAFA;
+}
+
+#who-container
+{
+    width: 100%;
+    height: 100%;
+}
+
+#about,
+#mail,
+#linkedin,
+#photo
+{
+    position: absolute;
+    background-repeat: no-repeat;
+
+    background-size: auto 76vh;
+    background-position: 38% 50%;
+
+    width:  100%;
+    height: 100%;
+}
+
+#about
+{
+    /*background-image: url("../imgs/about_me/about.svg");*/
+}   
+
+#about-text
+{
+    
+}
+
+#about-text div
+{
+    max-width: 50vw;
+    text-align: left;
+    word-wrap: break-word;
+    margin-left: 25%;
+    display: block;
+    top: auto !important;
+    transform: none !important;
+}
+
+#about .header
+{
+    font-weight: 700;
+    
+    font-size: 4vh;
+    letter-spacing: -0.1vw;
+    
+    line-height: 140%;
+}
+
+#about .main-text
+{
+    font-weight: 300;
+    font-size: 2.4vh;
+}
+
+#about ul
+{
+    list-style-type: '-';
+}
+
+#about li
+{
+    padding-left: 1vh;
+}
+
+#mail
+{
+    /*background-image: url("../imgs/about_me/mail.svg");*/
+}
+
+#linkedin
+{
+    /*background-image: url("../imgs/about_me/linkedin.svg");*/
+}
+
+#photo
+{
+    padding-top: calc(100vh - 38vw);
+    padding-left: 57vw;
+
+    background-image: url("../imgs/about_me/photo.png");
+    background-size: 38vw 38vw;
+    background-position: 95% 100%;
+}
+
+/*---------------------------------------------*/
+
+section div 
+{
+    font-style: normal;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+span
+{
+    font-size: 4em;
+    font-style: normal;
+    color: #fff;
+}
+
+/*Paper.js--------------------------------------*/
+
+#landing-page-canvas
+{
+    z-index: 10;
+    background-color: #FFCA2B;
+    width: 100%;
+    height: 100%;
+}
