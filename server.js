@@ -34,8 +34,8 @@ function readFiles(results, curIndex, callback)
 {
     readFile(results[curIndex], function(data)
     {
-        var wwwIndex = results[curIndex].indexOf("www");
-        var fileName = results[curIndex].substr(wwwIndex + 3, results[curIndex].length - 1).replaceAll('\\', '/');
+        var wwwIndex = results[curIndex].indexOf("noahvoogd.github.io");
+        var fileName = results[curIndex].substr(wwwIndex + ("noahvoogd.github.io").length, results[curIndex].length - 1).replaceAll('\\', '/');
 
         fileList[fileName] = data;
 
@@ -138,7 +138,6 @@ function stop()
     //Close the server
     server.close();
     rl.pause();
-    console.log("Exit?");
 }
 
 //-------------------------------------------------------------------------------

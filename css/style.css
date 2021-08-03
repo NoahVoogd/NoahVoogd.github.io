@@ -27,8 +27,8 @@ body, html
 {
     position: absolute;
 
-    width: 50%;
-    margin-left: 25%;
+    /*width: 50%;
+    margin-left: 25%;*/
 }
 
 #hi-container
@@ -44,7 +44,7 @@ body, html
     position: absolute;
 
     height: 50%;
-    width: 100%;
+    /*width: 100%;*/
 
     top: 50%;
     -ms-transform: translateY(-50%);
@@ -53,21 +53,43 @@ body, html
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+
+    width: 50%;
+    margin-left: 25%;
 }
 
 #hi-there
 {
+    z-index: 100;
     background-image: url("../imgs/landing_page/base_text.svg");
 }
 
 #who
 {
+    z-index: 1;
     background-image: url("../imgs/landing_page/noah.svg");
+}
+
+#test-svg
+{
+    z-index: 1;
+    margin-left: -25%;
+    display: none;
 }
 
 #what
 {
     background-image: url("../imgs/landing_page/things.svg");
+}
+
+#landing-page-canvas
+{
+    position: absolute;
+    margin-left: -50%;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 }
 
 /*WHY------------------------------------------*/
@@ -209,14 +231,4 @@ span
     font-size: 4em;
     font-style: normal;
     color: #fff;
-}
-
-/*Paper.js--------------------------------------*/
-
-#landing-page-canvas
-{
-    z-index: 10;
-    background-color: #FFCA2B;
-    width: 100%;
-    height: 100%;
 }

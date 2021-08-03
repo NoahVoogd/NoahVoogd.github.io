@@ -100,3 +100,11 @@ function handleHiThereMouse()
 
     hover = false;
 }
+
+function windowResize() 
+{
+    document.getElementById('landing-page-canvas').width  = window.innerWidth;
+    document.getElementById('landing-page-canvas').height = window.innerHeight;
+};
+  
+window.addEventListener('resize', windowResize);
