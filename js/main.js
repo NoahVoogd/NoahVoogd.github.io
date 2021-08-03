@@ -49,7 +49,7 @@ function handleMouseMove(event)
 
     if (curPage == 0)
     {
-        //handleHiThereMouse();
+        handleHiThereMouse();
     }
 }
 
@@ -66,12 +66,12 @@ function handleHiThereMouse()
 
     if ((mousePos.x > whoX && mousePos.y > whoY) && (mousePos.x < whoX + whoWidth && mousePos.y < whoY + whoHeight))
     {
-        $("#who").css("background-image", 'url("imgs/landing_page/who.svg")');
+        //$("#who").css("background-image", 'url("imgs/landing_page/who.svg")');
         hover = true;
     }
     else
     {
-        $("#who").css("background-image", 'url("imgs/landing_page/noah.svg")');
+        //$("#who").css("background-image", 'url("imgs/landing_page/noah.svg")');
     }
 
     var whatX = window.innerWidth * 0.5 * 0.60 + window.innerWidth * 0.25;
@@ -81,12 +81,12 @@ function handleHiThereMouse()
 
     if ((mousePos.x > whatX && mousePos.y > whatY) && (mousePos.x < whatX + whatWidth && mousePos.y < whatY + whatHeight))
     {
-        $("#what").css("background-image", 'url("imgs/landing_page/what.svg")');
+        //$("#what").css("background-image", 'url("imgs/landing_page/what.svg")');
         hover = true;
     }
     else
     {
-        $("#what").css("background-image", 'url("imgs/landing_page/things.svg")');
+        //$("#what").css("background-image", 'url("imgs/landing_page/things.svg")');
     }
 
     if (hover)

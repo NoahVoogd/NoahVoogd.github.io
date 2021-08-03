@@ -3,6 +3,7 @@ tool.maxDistance = 100;
 
 var path;
 var path2;
+var path3;
 var whoMask;
 var whatMask;
 path = new Path();
@@ -31,11 +32,11 @@ function onMouseMove(event)
 
 	if (whoMask != null)
 	{ 
-		whoMask.fillColor = 'black';//'#FAFAFA';
+		whoMask.fillColor = '#FFCC33';//'#FAFAFA';
 	}
 	if (whatMask != null)
 	{ 
-		whatMask.fillColor = 'black';//'#FAFAFA';
+		whatMask.fillColor = '#FFCC33';//'#FAFAFA';
 	}
 }
 
@@ -47,14 +48,13 @@ project.importSVG('/imgs/landing_page/who_mask_transparent.svg', function(mask1)
 	{
 		whatMask = mask2;
 
+		//Position the masks correctly
 		posMasks();
 
-		// Bundle everything is a group so the mask can be applied to the content
+		//Bundle everything is a group so the masks can be applied to the content
 		var group = new Group({children: [whoMask, path]});
-		//var group2 = new Group({children: [whoMask, path2]});
-
-		var group3 = new Group({children: [whatMask, path]});
-		//var group4 = new Group({children: [whatMask, path2]});
+		var group2 = new Group({children: [whoMask, path2]});
+		var group3 = new Group({children: [whatMask, path2]});
 		
 		$('#landing-page-canvas').css("opacity", 1);
 	});
