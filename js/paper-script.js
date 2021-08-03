@@ -3,7 +3,6 @@ tool.maxDistance = 100;
 
 var path;
 var path2;
-var path3;
 var whoMask;
 var whatMask;
 path = new Path();

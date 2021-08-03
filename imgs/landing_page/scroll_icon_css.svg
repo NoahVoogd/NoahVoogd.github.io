@@ -1,0 +1,9 @@
+<svg id="eeLRH6GVqfX1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 92" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <style>
+        <![CDATA[#eeLRH6GVqfX3_to {animation: eeLRH6GVqfX3_to__to 1500ms linear infinite normal forwards}@keyframes eeLRH6GVqfX3_to__to { 0% {transform: translate(29.999998px,28.825001px);animation-timing-function: cubic-bezier(0.245,0.07,0.58,1)} 66.666667% {transform: translate(29.999998px,43.325001px)} 100% {transform: translate(29.999998px,43.325001px)}}]]>
+    </style>
+    <path id="eeLRH6GVqfX2" d="M55,28.8L55,63.25C54.866,69.884,52.417,75.55,47.65,80.25C42.783,85.184,36.9,87.65,30,87.65C23.067,87.65,17.167,85.183,12.3,80.25C7.567,75.55,5.133,69.884,5,63.25L5,28.8C5.133,22.133,7.567,16.417,12.3,11.65C17.167,6.783,23.067,4.35,30,4.35C36.9,4.35,42.783,6.783,47.65,11.65C52.417,16.417,54.866,22.133,55,28.8Z" clip-rule="evenodd" fill="none" fill-rule="evenodd" stroke="rgb(250,250,250)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1"/>
+    <g id="eeLRH6GVqfX3_to" transform="translate(29.999998,28.825001)">
+        <path id="eeLRH6GVqfX3" d="M27.6,26.45C28.267,25.817,29.067,25.5,30,25.5C30.9,25.5,31.684,25.817,32.35,26.45C33.017,27.117,33.35,27.916,33.35,28.85C33.35,29.75,33.017,30.517,32.35,31.15C31.684,31.817,30.901,32.15,30,32.15C29.067,32.15,28.267,31.817,27.6,31.15C26.967,30.517,26.65,29.75,26.65,28.85C26.65,27.917,26.967,27.117,27.6,26.45Z" transform="translate(-29.999998,-28.825001)" clip-rule="evenodd" fill="rgb(250,250,250)" fill-rule="evenodd" stroke="rgb(250,250,250)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1"/>
+    </g>
+</svg>

@@ -15,6 +15,7 @@
 
 .dots 
 {	
+	margin-top: -8px;
 	z-index: 1;
 	list-style: none;
 	padding: 0;
@@ -33,6 +34,10 @@
 	width: 4px;
 	height: 5px;
 	display: block;
+	text-decoration: none;
+	font-family: "Open Sans";
+	color: #FAFAFA;
+	margin-left: 20px;
 }
 
 /*Non-active*/
@@ -42,7 +47,7 @@
 	position: absolute;
 	width: 10px;
 	height: 10px;
-	margin-top: -4px;
+	margin-top: 8px;
 	left: 7px; 
 	/*background: #FAFAFA;*/
 	-webkit-border-radius: 10px;
@@ -69,6 +74,12 @@
 	-o-transform: scale(1.0);
 	transform: scale(1.0);
 }
+
+.dots li a[href$="#hi"]
+{
+
+}
+
 
 .dots-right 
 {
