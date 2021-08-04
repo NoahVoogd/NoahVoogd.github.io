@@ -1,4 +1,4 @@
-var pageNames = ["hi", "why", "what_code", "what_art", "how", "who"];
+var pageNames = ["hi", "what", "how", "who"];
 var mousePos = {x: -1, y: -1}
 var whoHover = false;
 var whatHover = false;
@@ -84,13 +84,13 @@ function handleHiThereMouse()
 
     if ((mousePos.x > whatX && mousePos.y > whatY) && (mousePos.x < whatX + whatWidth && mousePos.y < whatY + whatHeight))
     {
-        //$("#what").css("background-image", 'url("imgs/landing_page/what.svg")');
+        //$("#what-img").css("background-image", 'url("imgs/landing_page/what.svg")');
         hover = true;
         whatHover = true;
     }
     else
     {
-        //$("#what").css("background-image", 'url("imgs/landing_page/things.svg")');
+        //$("#what-img").css("background-image", 'url("imgs/landing_page/things.svg")');
         whatHover = false;
     }
 
@@ -123,7 +123,7 @@ window.addEventListener("click", function()
 
     if (whatHover)
     {
-        window.location.href = '/#what_code';
+        window.location.href = '/#what';
     }
 });
 
