@@ -84,13 +84,11 @@ function handleHiThereMouse()
 
     if ((mousePos.x > whatX && mousePos.y > whatY) && (mousePos.x < whatX + whatWidth && mousePos.y < whatY + whatHeight))
     {
-        //$("#what-img").css("background-image", 'url("imgs/landing_page/what.svg")');
         hover = true;
         whatHover = true;
     }
     else
     {
-        //$("#what-img").css("background-image", 'url("imgs/landing_page/things.svg")');
         whatHover = false;
     }
 
@@ -130,12 +128,46 @@ window.addEventListener("click", function()
 $('.dots a').hover(function()
 {
     var title = $(this).attr('href').replace('#', '');
-    $(this).html(title);
+    if ($(this).parent().find('.dot-title').length == 0)
+    {
+        $(this).parent().append('<a class="dot-title" href="' + $(this).attr('href') + '">' + title + '</a>');
+    }
 },
 function()
 {
     setTimeout(() => 
     {
-        $(this).html('');    
-    }, 250);
+        $(this).parent().find('.dot-title').remove();  
+    }, 150);
 });
+
+$('.dots a').click(function()
+{
+    adjustDotColor(300);
+});
+
+function adjustDotColor(waitTime)
+{
+    setTimeout(() => {
+        var curPage = window.location.href;
+
+        if (curPage.endsWith('#who'))
+        {
+            var color = "#333333";
+            
+            $(".dots li a").css("background-color", "transparent");
+            $(".dots li a.active").css("background-color", color);
+            $(".dots li a").css("color", color);
+            $(".dots li a").css("border-color", color);
+                
+        }
+        else
+        {
+            var color = "#fafafa";
+            $(".dots li a").css("background-color", "transparent");
+            $(".dots li a.active").css("background-color", color);
+            $(".dots li a").css("color", color);
+            $(".dots li a").css("border-color", color);
+        }
+    }, waitTime);
+}

@@ -244,14 +244,10 @@ var curPage = -1;
 
 			curPage = position;
 
+			console.log(position);
+
 			//Adjust the color if necessary
-			//console.log(position);
-			if (position == 1)
-			{
-				//console.log("Changing color");
-				//$(".dots li a").css("border", "2px solid green")
-				//$(".dots li a:before").css("background-color", "green")
-			}
+			adjustDotColor(200);
 		};
 
 		this.registerIeTags = function () {

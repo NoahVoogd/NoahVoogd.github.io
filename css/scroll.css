@@ -15,7 +15,7 @@
 
 .dots 
 {	
-	margin-top: -8px;
+	margin-top: -4px;
 	z-index: 1;
 	list-style: none;
 	padding: 0;
@@ -28,27 +28,18 @@
     transform: translateY(-50%);
 }
 
+/*Non-active*/
 .dots li a 
 {
-	padding: 11px;
-	width: 4px;
-	height: 5px;
+	width: 6px;
+	padding: 6px;
 	display: block;
 	text-decoration: none;
 	font-family: "Open Sans";
 	color: #FAFAFA;
 	margin-left: 20px;
-}
-
-/*Non-active*/
-.dots li a:before 
-{
-	content: '';
-	position: absolute;
-	width: 14px;
-	height: 14px;
-	margin-top: 6px;
-	left: 7px; 
+	/*position: absolute;*/
+	margin-top: 8px;
 	/*background: #FAFAFA;*/
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -63,16 +54,18 @@
     border: 2px solid #FAFAFA;
 }
 
-/*Active*/
-.dots li a.active:before 
+.dot-title
 {
-	content: '';
+	position: absolute !important;
+	border: none !important;
+	margin-top: -28px !important;
+	margin-left: 45px !important;
+}
+
+/*Active*/
+.dots li a.active
+{
 	background-color: #FAFAFA;
-	-webkit-transform: scale(1.0);
-	-moz-transform: scale(1.0);
-	-ms-transform: scale(1.0);
-	-o-transform: scale(1.0);
-	transform: scale(1.0);
 }
 
 .dots-right 
