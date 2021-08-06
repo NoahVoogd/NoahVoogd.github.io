@@ -5,7 +5,7 @@ var skills = {
     "other": ["Cordova", "Ionic", "Angular", "React.js", "Vue.js", "Node.js", "Godot", "MySQL", "SQLite", "Git", "Docker"],
     "design": ["Photoshop", "Illustrator", "Animate/Flash"]
 };
-var varNames = ["whatImGoodAt", "whatIveWorkedWith", "whatMakesTheWorldGoRound"];
+var varNames = ["whatImGoodAt", "whatIveWorkedWith", "myToolKit", "whatMakesTheWorldGoRound"];
 var varNameIndex = 0;
 var mousePos = {x: -1, y: -1}
 var curPage;

@@ -258,8 +258,6 @@ var curPagePosition = -1;
 			curPagePosition = position;
 			curPage = window.location.href;
 
-			console.log(position);
-
 			//Adjust the color if necessary
 			adjustDotColor();
 		};

@@ -149,6 +149,23 @@ section
 #section-how
 {
     background-color: #333333;
+    color: #FAFAFA;
+}
+
+#how-container
+{
+    height: 100vh;
+}
+
+#coding-design
+{
+    font-size: 26px;
+    line-height: 36px;
+    position: absolute;
+    padding-top: calc(14.5vh - 42px);
+    top: 13vh;
+    height: 27vh;
+    width: 100vw;
 }
 
 #code-container
@@ -156,15 +173,17 @@ section
     background-color: #282828;
     width: 100vw;
     height: 46vh;
-    top: 23vh;
+    top: 27vh;
     font-family: Consolas;
     font-weight: 300;
     color: #FAFAFA;
+    position: absolute;
+    transform: translateY(0px);
 }
 
 #code
 {
-
+    font-size: 18px;
     color: white;
     max-width: 45vw;
     max-height: 46vh;
@@ -223,6 +242,7 @@ section
 #cursor
 {
     margin-left: -2px;
+    margin-right: -4px;
     animation: blink 1s infinite;
 }
 
@@ -249,9 +269,26 @@ section
     color: #FAFAFA !important;
 }
 
-#code-close
+#skill-note
 {
-   
+    width: 100vw;
+    height: 27vh;
+    top: 73vh;
+    position: absolute;
+    transform: translateY(0px);
+}
+
+#favorite-tech
+{
+    font-size: 22px;
+    font-style: italic;
+    top: 42%;
+}
+
+#quick-learner
+{
+    font-size: 26px;
+    top: 42%;
 }
 
 /*WHO------------------------------------------*/
