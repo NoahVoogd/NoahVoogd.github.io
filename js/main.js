@@ -1,7 +1,18 @@
-var pageNames = ["hi", "what", "how", "who"];
+var pageNames = ["hi", "how", "who"];
+var work = ["topforms", "klantenhuis"];
 var mousePos = {x: -1, y: -1}
-var whoHover = false;
-var whatHover = false;
+var curPage;
+var viewingWork = false;
+
+for (let i = 0; i < work.length; i++) 
+{
+    pageNames.splice(1 + i, 0, work[i]);
+}
+
+window.addEventListener("load", function()
+{
+    curPage = window.location.href;
+});
 
 activateScroll();
 
@@ -47,61 +58,6 @@ function handleMouseMove(event)
 
     mousePos.x = event.pageX;
     mousePos.y = event.pageY;
-
-    if (curPage == 0)
-    {
-        handleHiThereMouse();
-    }
-}
-
-function handleHiThereMouse()
-{
-    var hover = false;
-
-    var hiHeight = window.innerWidth * 0.5 * 0.43;
-
-    var whoX = window.innerWidth * 0.5 * 0.38 + window.innerWidth * 0.25;
-    var whoHeight = hiHeight * 0.37;
-    var whoWidth = window.innerWidth * 0.5 * 0.62;
-    var whoY = window.innerHeight * 0.5 - hiHeight * 0.12;
-
-    if ((mousePos.x > whoX && mousePos.y > whoY) && (mousePos.x < whoX + whoWidth && mousePos.y < whoY + whoHeight))
-    {
-        //$("#who").css("background-image", 'url("imgs/landing_page/who.svg")');
-        hover = true;
-        whoHover = true;
-    }
-    else
-    {
-        //$("#who").css("background-image", 'url("imgs/landing_page/noah.svg")');
-        whoHover = false;
-    }
-
-    var whatX = window.innerWidth * 0.5 * 0.60 + window.innerWidth * 0.25;
-    var whatHeight = hiHeight * 0.10;
-    var whatWidth = window.innerWidth * 0.5 * 0.19;
-    var whatY = window.innerHeight * 0.5 + hiHeight * 0.40;
-
-    if ((mousePos.x > whatX && mousePos.y > whatY) && (mousePos.x < whatX + whatWidth && mousePos.y < whatY + whatHeight))
-    {
-        hover = true;
-        whatHover = true;
-    }
-    else
-    {
-        whatHover = false;
-    }
-
-    if (hover)
-    {
-        $("body").css("cursor", "pointer");
-    }
-    else
-    {
-        $("body").css("cursor", "initial");
-    }
-
-    hover = false;
 }
 
 function windowResize() 
@@ -112,25 +68,55 @@ function windowResize()
   
 window.addEventListener('resize', windowResize);
 
-window.addEventListener("click", function()
+$("#who-click").click(function()
 {
-    if (whoHover)
-    {
-        window.location.href = '/#who';
-    }
+    window.location.href = '/#who';
+});
 
-    if (whatHover)
-    {
-        window.location.href = '/#what';
-    }
+$("#what-click").click(function()
+{
+    window.location.href = '/#what';
 });
 
 $('.dots a').hover(function()
 {
     var title = $(this).attr('href').replace('#', '');
+    var pageTag = curPage.split('#')[1];
+    console.log(pageTag);
+
     if ($(this).parent().find('.dot-title').length == 0)
     {
-        $(this).parent().append('<a class="dot-title" href="' + $(this).attr('href') + '">' + title + '</a>');
+        var titleClass = "dot-title";
+        if (work.indexOf(title) > -1)
+        {
+            titleClass += " work-title";
+        }
+
+        if (title == "topforms")
+        {
+            $(this).parent().append('<a id="what-title" class="dot-title" href="' + $(this).attr('href') + '">what</a>');
+        }
+        else
+        {
+            $(this).parent().append('<a class="' + titleClass + '" href="' + $(this).attr('href') + '">' + title + '</a>');
+        }
+        
+        var color = "#fafafa";
+
+        if (curPage.endsWith('#who'))
+        {
+            color = "#333333";   
+        }
+        $(this).parent().find(".dot-title").css("color", color);
+    }
+
+    if (work.indexOf(pageTag) > -1)
+    {
+        $('#what-title').css("margin-top", "-44px");
+    }
+    else
+    {
+        $('#what-title').css("margin-top", "-28px");
     }
 },
 function()
@@ -141,33 +127,91 @@ function()
     }, 150);
 });
 
-$('.dots a').click(function()
+function adjustDotColor()
 {
-    adjustDotColor(300);
-});
-
-function adjustDotColor(waitTime)
-{
-    setTimeout(() => {
-        var curPage = window.location.href;
+    setTimeout(function() {
+        var color = "#fafafa";
 
         if (curPage.endsWith('#who'))
         {
-            var color = "#333333";
-            
-            $(".dots li a").css("background-color", "transparent");
-            $(".dots li a.active").css("background-color", color);
-            $(".dots li a").css("color", color);
-            $(".dots li a").css("border-color", color);
-                
+            color = "#333333";   
         }
-        else
-        {
-            var color = "#fafafa";
-            $(".dots li a").css("background-color", "transparent");
-            $(".dots li a.active").css("background-color", color);
-            $(".dots li a").css("color", color);
-            $(".dots li a").css("border-color", color);
-        }
-    }, waitTime);
+
+        $(".dots li a").css("background-color", "transparent");
+        $(".dots li a.active").css("background-color", color);
+        $(".dots li a").css("color", color);
+        $(".dots li a").css("border-color", color);
+    }, 300);
 }
+
+function showWork()
+{
+    var tag = curPage.split('#');
+    tag = tag[tag.length - 1];
+
+    //If we're on a work page
+    if (work.indexOf(tag) > -1)
+    {
+        if ($('#topforms-work-dot').length == 0)
+        {
+            $('<a href="#topforms" id="topforms-work-dot" class="work-dot"></a>').insertAfter('#what-dot');
+            $('<a id="topforms-title" class="dot-title-extra work-title">topforms</a>').insertAfter('#topforms-work-dot');
+            setTimeout(() => 
+            {
+                $(".work-dot").each(function()
+                {
+                    $('<div class="dot-connector"></div>').insertAfter(this);
+                });
+            }, 350);
+
+            $('#topforms-work-dot').hover(function()
+            {
+                console.log('in');
+                $("#topforms-title").show();
+            },
+            function()
+            {
+                setTimeout(() => 
+                {
+                    $("#topforms-title").hide();
+                }, 150);
+            });
+        }
+        
+        setTimeout(() => 
+        {
+            $(".work-dot").css("display", "block");
+            $('#what-dot').css("background-color", "#333333");
+            $("#what-dot").css("background-image", 'url("../imgs/dot.svg');
+            $('.work-dot').each(function()
+            {
+                if ($(this).attr("id") == "topforms-work-dot")
+                {
+                    if (tag == "topforms")
+                    {
+                        $("#topforms-work-dot").css("background-color", "#fafafa");
+                    }
+                }
+            })
+        }, 350);
+    }
+    else
+    {
+        setTimeout(() => 
+        {
+            $("#what-dot").css("background-image", 'none');
+            $('#what-dot').css("background-color", "transparent");
+            $("#topforms-work-dot").remove();
+            $('.dot-connector').remove();
+            $(".work-dot").hide();
+        }, 100);
+    }
+}
+
+window.addEventListener('popstate', function()
+{
+    curPage = window.location.href;
+
+    adjustDotColor();
+    showWork();
+});

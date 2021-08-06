@@ -11,6 +11,11 @@ body, html
 
 /*HI-------------------------------------------*/
 
+section
+{
+    background-color: #23281A;
+}
+
 #section-hi 
 {
     background-color: #FFCC33;
@@ -70,16 +75,36 @@ body, html
     background-image: url("../imgs/landing_page/noah.svg");
 }
 
-#test-svg
-{
-    z-index: 1;
-    margin-left: -25%;
-    display: none;
-}
-
 #what-img
 {
     background-image: url("../imgs/landing_page/things.svg");
+}
+
+#who-click,
+#what-click
+{
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 500;
+}
+
+#who-click
+{
+    margin-left: 43%;
+    margin-top: 1.5vw;
+    
+    width: 32.5%;
+    height: 8.8vw;
+}
+
+#what-click
+{
+    margin-left: 54.8%;
+    margin-top: -0.5vw;
+    
+    width: 10%;
+    height: 3vw;
 }
 
 #landing-page-canvas

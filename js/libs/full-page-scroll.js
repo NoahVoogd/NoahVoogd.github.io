@@ -1,4 +1,4 @@
-var curPage = -1;
+var curPagePosition = -1;
 
 /**
  * Full page
@@ -77,18 +77,31 @@ var curPage = -1;
 	 */
 	fullScroll.prototype.buildDots = function () {		
 		this.ul = document.createElement('ul');
-		
+		this.ul.id = 'dot-menu';		
 		this.ul.className = this.updateClass(1, 'dots', this.ul.className);
 		this.ul.className = this.updateClass(1, this.defaults.dotsPosition == 'right' ? 'dots-right' : 'dots-left', this.ul.className);
 
 		var _self = this;
 		var sections = this.defaults.sections;		
 
-		for (var i = 0; i < sections.length; i++) {
+		for (var i = 0; i < sections.length; i++) 
+		{
 			var li = document.createElement('li');
 			var a = document.createElement('a');
 		
-			a.setAttribute('href', '#' + pageNames[i]);			
+			a.setAttribute('href', '#' + pageNames[i]);	
+
+			if (work.indexOf(pageNames[i]) > -1 && this.ul.childElementCount == 1)
+			{
+				a.id = "what-dot";
+			}
+
+			//Hide the "work dots" except the first one
+			else if (work.indexOf(pageNames[i]) > -1 && this.ul.childElementCount > 1)
+			{
+				a.classList.add("work-dot");	
+			}	
+
 			li.appendChild(a);
 			_self.ul.appendChild(li);
 		}
@@ -242,12 +255,13 @@ var curPage = -1;
 				location.hash = pageNames[_self.defaults.currentPosition];
 			}
 
-			curPage = position;
+			curPagePosition = position;
+			curPage = window.location.href;
 
 			console.log(position);
 
 			//Adjust the color if necessary
-			adjustDotColor(200);
+			adjustDotColor();
 		};
 
 		this.registerIeTags = function () {

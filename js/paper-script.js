@@ -31,11 +31,11 @@ function onMouseMove(event)
 
 	if (whoMask != null)
 	{ 
-		whoMask.fillColor = '#FFCC33';//'#FAFAFA';
+		whoMask.fillColor = '#FFCC33';
 	}
 	if (whatMask != null)
 	{ 
-		whatMask.fillColor = '#FFCC33';//'#FAFAFA';
+		whatMask.fillColor = '#FFCC33';
 	}
 }
 
