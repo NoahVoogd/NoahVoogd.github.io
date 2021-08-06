@@ -163,8 +163,6 @@ section
 }
 
 #about,
-#mail,
-#linkedin,
 #photo
 {
     position: absolute;
@@ -175,12 +173,7 @@ section
 
     width:  100%;
     height: 100%;
-}
-
-#about
-{
-    /*background-image: url("../imgs/about_me/about.svg");*/
-}   
+} 
 
 #about-text
 {
@@ -192,7 +185,7 @@ section
     max-width: 50vw;
     text-align: left;
     word-wrap: break-word;
-    margin-left: 25%;
+    margin-left: 20%;
     display: block;
     top: auto !important;
     transform: none !important;
@@ -202,21 +195,36 @@ section
 {
     font-weight: 700;
     
-    font-size: 4vh;
+    font-size: 3vw;
     letter-spacing: -0.1vw;
     
-    line-height: 140%;
+    line-height: 120%;
+
+    margin-bottom: 2vh;
 }
 
-#about .main-text
+@media screen and (min-width: 1085px) 
 {
-    font-weight: 300;
-    font-size: 2.4vh;
+    #about .header {
+       font-size: 40px;
+    }
+    #about-text div
+    {
+        max-width: 50vw;
+    }
+}
+
+#about .main-text div
+{
+    
 }
 
 #about ul
 {
+    margin-top: 2vh;
     list-style-type: '-';
+    padding-left: 20px;
+    margin-bottom: 50px;
 }
 
 #about li
@@ -224,14 +232,69 @@ section
     padding-left: 1vh;
 }
 
-#mail
+.item,
+.item div
 {
-    /*background-image: url("../imgs/about_me/mail.svg");*/
+    margin-left: 10px !important;
 }
 
-#linkedin
+.year
 {
-    /*background-image: url("../imgs/about_me/linkedin.svg");*/
+    display: inline-block !important;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    width: 80px;
+    position: absolute;
+    margin-top: 4px;
+    padding-right: 15px;
+    text-align: right !important;
+}
+
+.item .item-text
+{
+    padding-left: 80px !important;
+    display: inline-block !important;
+    width: calc(100% - 80px);
+}
+
+#coffee-title
+{
+    font-weight: 700;
+    
+    font-size: 30px;
+    letter-spacing: -0.1vw;
+    
+    line-height: 120%;
+
+    margin-bottom: 1vh;
+    margin-left: 0px !important;
+}
+
+#coffee-mail,
+#coffee-linkedin
+{
+    color: #212529;
+}
+
+#coffee-mail
+{
+    margin-left: 35px;
+    font-weight: 300;
+}
+
+#coffee-linkedin
+{
+    background-color: #212529;
+    color: #FAFAFA;
+    text-decoration: none;
+    -webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    padding: 8px 20px;
 }
 
 #photo
@@ -241,7 +304,15 @@ section
 
     background-image: url("../imgs/about_me/photo.png");
     background-size: 38vw 38vw;
-    background-position: 95% 100%;
+    background-position: 100% 100%;
+}
+
+@media screen and (max-width: 1300px) 
+{
+    #photo
+    {     
+        background-position: 105% 100%;
+    }
 }
 
 /*---------------------------------------------*/
