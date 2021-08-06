@@ -83,3 +83,13 @@ paper.view.onResize = function(event)
 {
 	posMasks();
 };
+
+window.addEventListener('popstate', function()
+{
+	if (curPage.endsWith('#hi'))
+	{
+		setTimeout(function() {
+			posMasks();
+		}, 700);
+	}
+});
