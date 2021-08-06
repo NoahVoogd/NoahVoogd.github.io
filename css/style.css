@@ -14,6 +14,8 @@ body, html
 section
 {
     background-color: #23281A;
+    max-height: 100vh;
+    overflow-y: hidden;
 }
 
 #section-hi 
@@ -147,6 +149,109 @@ section
 #section-how
 {
     background-color: #333333;
+}
+
+#code-container
+{
+    background-color: #282828;
+    width: 100vw;
+    height: 46vh;
+    top: 23vh;
+    font-family: Consolas;
+    font-weight: 300;
+    color: #FAFAFA;
+}
+
+#code
+{
+
+    color: white;
+    max-width: 45vw;
+    max-height: 46vh;
+    margin-left: 27.5vw;
+}
+
+#code div
+{
+    transform: translateY(0%) !important;
+    text-align: left !important;
+}
+
+#code-title
+{
+    
+}
+
+#skills
+{
+    border-left: 1px solid #fafafa81;
+    padding: 15px 0px;
+    padding-left: 30px;
+    margin: 5px auto;
+}
+
+#skills .skill
+{
+    display: inline-block;
+    padding-left: 5px;
+
+}
+
+.skill-languages
+{
+    color: #9CDCFE !important;
+}
+
+.skill-other
+{
+    color: #BB86C0 !important;
+}
+
+.skill-design
+{
+    color: #D77840 !important;
+}
+
+.comma,
+.var,
+#var-name,
+#cursor
+{
+    display: inline !important;
+}
+
+#cursor
+{
+    margin-left: -2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink
+{
+    0% {opacity: 1;}
+    50% {opacity: 1;}
+    51% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+.var
+{
+    color: #3E98E1 !important;
+}
+
+#var-name
+{
+    color: #DCDC9D !important;
+}
+
+.comma
+{
+    color: #FAFAFA !important;
+}
+
+#code-close
+{
+   
 }
 
 /*WHO------------------------------------------*/

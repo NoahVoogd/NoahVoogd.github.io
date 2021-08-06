@@ -1,8 +1,17 @@
 var pageNames = ["hi", "how", "who"];
 var work = ["topforms", "klantenhuis"];
+var skills = {
+    "languages": ["JavaScript", "TypeScript", "HTML", "CSS", "Java", "Kotlin", "Python", "C#", "GDScript", "PHP"],
+    "other": ["Cordova", "Ionic", "Angular", "React.js", "Vue.js", "Node.js", "Godot", "MySQL", "SQLite", "Git", "Docker"],
+    "design": ["Photoshop", "Illustrator", "Animate/Flash"]
+};
+var varNames = ["whatImGoodAt", "whatIveWorkedWith", "whatMakesTheWorldGoRound"];
+var varNameIndex = 0;
 var mousePos = {x: -1, y: -1}
 var curPage;
 var viewingWork = false;
+var deleteSpeed = 100;
+var typeSpeed = 250;
 
 for (let i = 0; i < work.length; i++) 
 {
@@ -12,6 +21,26 @@ for (let i = 0; i < work.length; i++)
 window.addEventListener("load", function()
 {
     curPage = window.location.href;
+
+    for (const skillSet in skills) 
+    {
+        for (let i = 0; i < skills[skillSet].length; i++) 
+        {
+            $("#skills").append('<div class="skill skill-' + skillSet + '">' + skills[skillSet][i] + '</div>');
+        }
+    }
+
+    var x = 0;
+    $(".skill").each(function()
+    {
+        if (x != $(".skill").length - 1)
+        {
+            $(this).html($(this).html() + '<div class="comma">,</div>');
+        }
+        x++;
+    });
+
+    varAnimation();
 });
 
 activateScroll();
@@ -29,7 +58,6 @@ function activateScroll()
 
 $(window).scroll(function (event) {
     var scroll = $(window).scrollTop();
-    console.log("scroll");
 });
 
 document.onmousemove = handleMouseMove;
@@ -82,7 +110,6 @@ $('.dots a').hover(function()
 {
     var title = $(this).attr('href').replace('#', '');
     var pageTag = curPage.split('#')[1];
-    console.log(pageTag);
 
     if ($(this).parent().find('.dot-title').length == 0)
     {
@@ -166,7 +193,6 @@ function showWork()
 
             $('#topforms-work-dot').hover(function()
             {
-                console.log('in');
                 $("#topforms-title").show();
             },
             function()
@@ -215,3 +241,83 @@ window.addEventListener('popstate', function()
     adjustDotColor();
     showWork();
 });
+
+function varAnimation()
+{
+    setTimeout(() => 
+    {
+        if (curPage.endsWith("#how"))
+        {
+            setTimeout(() => 
+            {
+                varNameIndex++;
+                if (varNameIndex == varNames.length)
+                {
+                    varNameIndex = 0;
+                }
+
+                deleteLetter(varNames[varNameIndex], function()
+                {
+                    setTimeout(() => 
+                    {
+                        addLetter(varNames[varNameIndex], function()
+                        {
+                            varAnimation();
+                        });
+                    }, typeSpeed);
+                });
+            }, deleteSpeed);
+        }
+        else
+        {
+            varAnimation();
+        }
+    }, 3500);
+}
+
+function deleteLetter(newText, callback)
+{
+    var curVarName = $("#var-name").html();
+    var newVarName = curVarName.substr(0, curVarName.length - 1);
+
+    if (newText.substr(0, curVarName.length) != curVarName)
+    {
+        $("#var-name").html(newVarName);
+    }
+    else
+    {
+        callback();
+        return;
+    }
+
+    if (newVarName.length > 0)
+    {
+        setTimeout(() => 
+        {
+            deleteLetter(newText, callback);
+        }, deleteSpeed);
+    }
+    else
+    {
+        callback();
+    }
+}
+
+function addLetter(newText, callback)
+{
+    var curVarName = $("#var-name").html();
+    var newVarName = curVarName + newText.substr(curVarName.length, 1);
+    $("#var-name").html(newVarName);
+
+    if (newVarName.length < newText.length)
+    {
+        setTimeout(() => 
+        {
+            addLetter(newText, callback);
+        }, typeSpeed);
+    }
+    else
+    {
+        callback();
+    }
+}
