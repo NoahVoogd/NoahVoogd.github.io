@@ -22,6 +22,8 @@ window.addEventListener("load", function()
 {
     curPage = window.location.href;
 
+    setup();
+
     for (const skillSet in skills) 
     {
         for (let i = 0; i < skills[skillSet].length; i++) 
@@ -42,6 +44,18 @@ window.addEventListener("load", function()
 
     varAnimation();
 });
+
+function setup()
+{
+    if (window.innerWidth > 1815)
+    {
+        $("#introduction").html("I'm Noah Voogd, a 26 year old creative developer<br>living in Utrecht, the Netherlands.")
+    }
+    else
+    {
+        $("#introduction").html("I'm Noah Voogd, a 26 year old creative developer living in Utrecht, the Netherlands.")
+    }
+}
 
 activateScroll();
 
@@ -92,6 +106,7 @@ function windowResize()
 {
     document.getElementById('landing-page-canvas').width  = window.innerWidth;
     document.getElementById('landing-page-canvas').height = window.innerHeight;
+    setup();
 };
   
 window.addEventListener('resize', windowResize);
@@ -207,8 +222,7 @@ function showWork()
         setTimeout(() => 
         {
             $(".work-dot").css("display", "block");
-            $('#what-dot').css("background-color", "#333333");
-            $("#what-dot").css("background-image", 'url("../imgs/dot.svg');
+            $("#what-dot").css("background-color", "#fafafa");
             $('.work-dot').each(function()
             {
                 if ($(this).attr("id") == "topforms-work-dot")
@@ -225,8 +239,7 @@ function showWork()
     {
         setTimeout(() => 
         {
-            $("#what-dot").css("background-image", 'none');
-            $('#what-dot').css("background-color", "transparent");
+            $("#what-dot").css("background-color", "transparent");
             $("#topforms-work-dot").remove();
             $('.dot-connector').remove();
             $(".work-dot").hide();
