@@ -135,29 +135,115 @@ section
 .device-container
 {
     position: absolute;
+
+    height: 82vh;
+
+}
+
+.device-container.tablet
+{
+    width: 38vw;
+    margin-left: 10vw;
+}
+
+.device-container.laptop
+{
+    width: 48vw;
+    margin-left: 6vw;
+}
+
+.device-img
+{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    z-index: 50;
+}
+
+.tablet .device-img
+{
+    background-image: url("../imgs/work/tablet.svg");
+}
+
+.laptop .device-img
+{
+    background-image: url("../imgs/work/laptop.svg");
+}
+
+.slide-img
+{
+    position: absolute;
     width: 38vw;
     height: 82vh;
-    margin-left: 10vw;
-    
-    background-image: url("../imgs/work/tablet.svg");
+    z-index: -1;
+
+    background-image: url("../imgs/work/topforms/topforms_1.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50% 50%;
 }
 
-.device-img
+.work-arrows-container
 {
-
+    position: absolute;
+    z-index: 60;
+    width: 38vw;
+    height: 82vh;
 }
 
-.slideshow-container
+.tablet .work-arrows-container
 {
-
+    
 }
 
-.slide-img
+.laptop .work-arrows-container
 {
+    width: 100%;
+    /*margin-left: -8%;*/
+}
 
+.back-arrow,
+.forward-arrow
+{
+    position: absolute;
+    width: inherit;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    top: 0px;
+    transform: translateY(0px);
+    cursor: pointer;
+}
+
+.tablet .back-arrow,
+.tablet .forward-arrow
+{
+    height: 4.5vh;
+    margin-top: 75.2vh;
+}
+
+.laptop .back-arrow,
+.laptop .forward-arrow
+{
+    height: 2.9vh;
+    margin-top: 57vh;
+}
+
+.back-arrow
+{
+    background-image: url("../imgs/work/back_arrow.svg");
+    margin-left: -24px;
+    opacity: 0.3;
+}
+
+.forward-arrow
+{
+    background-image: url("../imgs/work/forward_arrow.svg");
+    margin-left: 24px;
 }
 
 .work-text-container
@@ -165,9 +251,20 @@ section
     top: calc(50% - 18vw);
     color: #fafafa;
     text-align: left !important;
+    
+    transform: translateY(0px);
+}
+
+.tablet-text
+{
     width: 40vw;
     margin-left: 50vw;
-    transform: translateY(0px);
+}
+
+.laptop-text
+{
+    width: 38vw;
+    margin-left: 55vw;
 }
 
 .work-text-container div

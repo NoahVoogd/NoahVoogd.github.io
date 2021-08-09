@@ -61,6 +61,32 @@ function setup()
         //console.log(window.innerHeight, "calc(50% -" + $(this).height(), (window.innerHeight - $(this).height()) / 2 + ")");
         $(this).css("top", "calc(50% -" + ((window.innerHeight - $(this).height()) / 2) + ")");
     });
+
+    var tabletHeight = $(".device-container.tablet").height();
+
+    if ($(".device-container.tablet").height() / $(".device-container.tablet").width() > 1.558)
+    {
+        tabletHeight = $(".device-container.tablet").width() * 1.558;
+    }
+
+    var tabletArrowTop = $(".device-container.tablet").height() - (($(".device-container.tablet").height() - tabletHeight) / 2) - (0.08 * tabletHeight);
+    $(".tablet .back-arrow, .tablet .forward-arrow").css({
+        "margin-top": tabletArrowTop + "px",
+        "height": 0.05 * tabletHeight
+    });
+
+    var laptopHeight = $(".device-container.laptop").height();
+
+    if ($(".device-container.laptop").height() / $(".device-container.laptop").width() > 0.649)
+    {
+        laptopHeight = $(".device-container.laptop").width() * 0.649;
+    }
+
+    var laptopArrowTop = $(".device-container.laptop").height() - (($(".device-container.laptop").height() - laptopHeight) / 2) - (0.205 * laptopHeight);
+    $(".laptop .back-arrow, .laptop .forward-arrow").css({
+        "margin-top": laptopArrowTop + "px",
+        "height": 0.052 * laptopHeight
+    });
 }
 
 activateScroll();
