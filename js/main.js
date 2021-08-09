@@ -1,5 +1,5 @@
 var pageNames = ["hi", "how", "who"];
-var work = ["topforms", "canon", "klantenhuis", "ggzopweg", "jam"];
+var work = ["topforms", "parsafix", "klantenhuis", "ggzopweg", "jam"];
 var skills = {
     "languages": ["JavaScript", "TypeScript", "HTML", "CSS", "Java", "Kotlin", "Python", "C#", "GDScript", "PHP"],
     "other": ["Cordova", "Ionic", "Angular", "React.js", "Vue.js", "Node.js", "Godot", "MySQL", "SQLite", "Git", "Docker"],
@@ -151,7 +151,7 @@ $("#who-click").click(function()
 
 $("#what-click").click(function()
 {
-    window.location.href = '/#what';
+    window.location.href = '/#topforms';
 });
 
 $('.dots a').hover(function()
