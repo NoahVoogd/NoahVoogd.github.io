@@ -289,6 +289,12 @@ section
     text-align: justify !important;
 }
 
+.work-text a
+{
+    color: white;
+    text-decoration: underline;
+}
+
 .made-with-title
 {
     font-size: 22px;
@@ -308,9 +314,35 @@ section
     background-color: #167672;
 }
 
+/*Canon----------------------------------------*/
+
+#section-canon
+{
+    background-color: #C12024;
+}
+
 /*Klantenhuis----------------------------------*/
 
 #section-klantenhuis
+{
+    background-color: #324465;
+}
+
+/*GGZ Opweg------------------------------------*/
+
+#section-ggzopweg
+{
+    background-color: #fafafa;
+}
+
+#section-ggzopweg .work-text-container
+{
+    color: #5199FF !important;
+}
+
+/*Jam------------------------------------------*/
+
+#section-jam
 {
     background-color: #324465;
 }

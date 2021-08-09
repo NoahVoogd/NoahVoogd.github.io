@@ -1,5 +1,5 @@
 var pageNames = ["hi", "how", "who"];
-var work = ["topforms", "klantenhuis"];
+var work = ["topforms", "canon", "klantenhuis", "ggzopweg", "jam"];
 var skills = {
     "languages": ["JavaScript", "TypeScript", "HTML", "CSS", "Java", "Kotlin", "Python", "C#", "GDScript", "PHP"],
     "other": ["Cordova", "Ionic", "Angular", "React.js", "Vue.js", "Node.js", "Godot", "MySQL", "SQLite", "Git", "Docker"],
@@ -12,6 +12,7 @@ var curPage;
 var viewingWork = false;
 var deleteSpeed = 100;
 var typeSpeed = 250;
+var dotColor;
 
 for (let i = 0; i < work.length; i++) 
 {
@@ -174,14 +175,8 @@ $('.dots a').hover(function()
         {
             $(this).parent().append('<a class="' + titleClass + '" href="' + $(this).attr('href') + '">' + title + '</a>');
         }
-        
-        var color = "#fafafa";
 
-        if (curPage.endsWith('#who'))
-        {
-            color = "#333333";   
-        }
-        $(this).parent().find(".dot-title").css("color", color);
+        $(this).parent().find(".dot-title").css("color", dotColor);
     }
 
     if (work.indexOf(pageTag) > -1)
@@ -204,17 +199,22 @@ function()
 function adjustDotColor()
 {
     setTimeout(function() {
-        var color = "#fafafa";
+        dotColor = "#fafafa";
 
         if (curPage.endsWith('#who'))
         {
-            color = "#333333";   
+            dotColor = "#333333";   
+        }
+        else if (curPage.endsWith("#ggzopweg"))
+        {
+            dotColor = "#5199FF";
         }
 
         $(".dots li a").css("background-color", "transparent");
-        $(".dots li a.active").css("background-color", color);
-        $(".dots li a").css("color", color);
-        $(".dots li a").css("border-color", color);
+        $(".dots li a.active").css("background-color", dotColor);
+        $(".dots li a").css("color", dotColor);
+        $(".dots li a").css("border-color", dotColor);
+        $(".dot-connector").css("background-color", dotColor);
     }, 300);
 }
 
@@ -235,6 +235,7 @@ function showWork()
                 $(".work-dot").each(function()
                 {
                     $('<div class="dot-connector"></div>').insertAfter(this);
+                    $(".dot-connector").css("background-color", dotColor);
                 });
             }, 350);
 
