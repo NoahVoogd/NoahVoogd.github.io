@@ -130,18 +130,92 @@ section
     margin-left: -2.5vw;
 }
 
-/*WHY------------------------------------------*/
-
-#section-why
-{
-    background-color: #FAFAFA;
-}
-
 /*WHAT-----------------------------------------*/
 
-#section-what
+.device-container
 {
-    background-color: #23281A;
+    position: absolute;
+    width: 38vw;
+    height: 82vh;
+    margin-left: 10vw;
+    
+    background-image: url("../imgs/work/tablet.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+}
+
+.device-img
+{
+
+}
+
+.slideshow-container
+{
+
+}
+
+.slide-img
+{
+
+}
+
+.work-text-container
+{
+    top: calc(50% - 18vw);
+    color: #fafafa;
+    text-align: left !important;
+    width: 40vw;
+    margin-left: 50vw;
+    transform: translateY(0px);
+}
+
+.work-text-container div
+{
+    text-align: left;
+    top: 0px !important;
+    transform: translateY(0vh) !important;
+}
+
+.work-title
+{
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.work-text
+{
+    font-weight: 300;
+    font-size: 17px;
+    margin-bottom: 20px;
+    text-align: justify !important;
+}
+
+.made-with-title
+{
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.made-with-text
+{
+    font-style: italic;
+}
+
+/*TOPforms-------------------------------------*/
+
+#section-topforms
+{
+    background-color: #167672;
+}
+
+/*Klantenhuis----------------------------------*/
+
+#section-klantenhuis
+{
+    background-color: #324465;
 }
 
 /*HOW------------------------------------------*/
@@ -162,7 +236,7 @@ section
     font-size: 24px;
     line-height: 32px;
     position: absolute;
-    padding-top: calc(14.5vh - 38px);
+    padding-top: calc(14.5vh - 35px);
     top: 13vh;
     height: 27vh;
     width: 100vw;

@@ -55,6 +55,12 @@ function setup()
     {
         $("#introduction").html("I'm Noah Voogd, a 26 year old creative developer living in Utrecht, the Netherlands.")
     }
+
+    $(".work-text-container").each(function()
+    {
+        //console.log(window.innerHeight, "calc(50% -" + $(this).height(), (window.innerHeight - $(this).height()) / 2 + ")");
+        $(this).css("top", "calc(50% -" + ((window.innerHeight - $(this).height()) / 2) + ")");
+    });
 }
 
 activateScroll();
@@ -131,7 +137,7 @@ $('.dots a').hover(function()
         var titleClass = "dot-title";
         if (work.indexOf(title) > -1)
         {
-            titleClass += " work-title";
+            titleClass += " work-dot-title";
         }
 
         if (title == "topforms")
@@ -197,7 +203,7 @@ function showWork()
         if ($('#topforms-work-dot').length == 0)
         {
             $('<a href="#topforms" id="topforms-work-dot" class="work-dot"></a>').insertAfter('#what-dot');
-            $('<a id="topforms-title" class="dot-title-extra work-title">topforms</a>').insertAfter('#topforms-work-dot');
+            $('<a id="topforms-title" class="dot-title-extra work-dot-title">topforms</a>').insertAfter('#topforms-work-dot');
             setTimeout(() => 
             {
                 $(".work-dot").each(function()
