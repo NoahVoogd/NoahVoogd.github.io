@@ -1,4 +1,5 @@
 var curPagePosition = -1;
+var canScroll = true;
 
 /**
  * Full page
@@ -156,13 +157,18 @@ var curPagePosition = -1;
 		var mTouchEnd = 0;
 		var _self = this;
 
-		this.mouseWheelAndKey = function (event) {
-			if (event.deltaY > 0 || event.keyCode == 40) {	
-				_self.defaults.currentPosition ++;
-				_self.changeCurrentPosition(_self.defaults.currentPosition);				
-			} else if (event.deltaY < 0 || event.keyCode == 38) {
-				_self.defaults.currentPosition --;
-				_self.changeCurrentPosition(_self.defaults.currentPosition);	
+		this.mouseWheelAndKey = function (event) 
+		{
+			if (canScroll)
+			{
+				canScroll = false;
+				if (event.deltaY > 0 || event.keyCode == 40) {	
+					_self.defaults.currentPosition ++;
+					_self.changeCurrentPosition(_self.defaults.currentPosition);				
+				} else if (event.deltaY < 0 || event.keyCode == 38) {
+					_self.defaults.currentPosition --;
+					_self.changeCurrentPosition(_self.defaults.currentPosition);	
+				}
 			}
 			_self.removeEvents();
 		};
@@ -234,6 +240,11 @@ var curPagePosition = -1;
 					this.ul.childNodes[i].firstChild.className = this.updateClass(1, 'active', this.ul.childNodes[i].firstChild.className);
 				}
 			}
+
+			setTimeout(() => {
+				//Allow scrolling again once the animation is done
+				canScroll = true;
+			}, animateTime * 1000);
 		};
 
 		this.changeCurrentPosition = function (position) {
