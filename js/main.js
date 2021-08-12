@@ -73,7 +73,8 @@ function setup()
     var tabletArrowTop = $(".device-container.tablet").height() - (($(".device-container.tablet").height() - tabletHeight) / 2) - (0.08 * tabletHeight);
     $(".tablet .back-arrow, .tablet .forward-arrow").css({
         "margin-top": tabletArrowTop + "px",
-        "height": 0.05 * tabletHeight
+        "height": 0.05 * tabletHeight,
+        "width": 0.483 * (0.05 * tabletHeight)
     });
 
     var laptopHeight = $(".device-container.laptop").height();
@@ -86,7 +87,8 @@ function setup()
     var laptopArrowTop = $(".device-container.laptop").height() - (($(".device-container.laptop").height() - laptopHeight) / 2) - (0.205 * laptopHeight);
     $(".laptop .back-arrow, .laptop .forward-arrow").css({
         "margin-top": laptopArrowTop + "px",
-        "height": 0.052 * laptopHeight
+        "height": 0.052 * laptopHeight,
+        "width": 0.483 * (0.052 * laptopHeight)
     });
 }
 
@@ -366,4 +368,70 @@ function addLetter(newText, callback)
     {
         callback();
     }
+}
+
+$(".back-arrow").click(function()
+{
+    animateSlide($(this), -1);
+});
+
+$(".forward-arrow").click(function()
+{
+    animateSlide($(this), 1);
+});
+
+function animateSlide(element, direction)
+{
+    console.log(direction);
+    var slideContainer = $(element).parent().parent().find(".slide-img-container");
+    var slideCount = $(slideContainer).children().length;
+    var currentImg;
+    var currentImgIndex = 0;
+    $(slideContainer).find(".slide-img").each(function()
+    {
+        if($(this).css("opacity") == "1")
+        {
+            currentImg = $(this);
+        }
+        if (currentImg == null)
+        {
+            currentImgIndex++;
+        }
+    });
+
+    var newImgIndex = currentImgIndex + direction;
+
+    if (newImgIndex < 0 || newImgIndex >= slideCount)
+    {
+        return;
+    }
+
+    var backArrow = $(element).parent().parent().find(".work-arrows-container .back-arrow");
+    if (newImgIndex != 0)
+    {
+        $(backArrow).css("opacity", "1");
+        $(backArrow).css("cursor", "pointer");
+    }
+    else
+    {
+        $(backArrow).css("opacity", "0.3")
+        $(backArrow).css("cursor", "initial");
+    }
+
+    var forwardArrow = $(element).parent().parent().find(".work-arrows-container .forward-arrow");
+    if (newImgIndex != slideCount - 1)
+    {
+        $(forwardArrow).css("opacity", "1");
+        $(forwardArrow).css("cursor", "pointer");
+    }
+    else
+    {
+        $(forwardArrow).css("opacity", "0.3")
+        $(forwardArrow).css("cursor", "initial");
+    }
+
+    var newImg = $(slideContainer).children().eq(newImgIndex);
+
+    $(currentImg).css("opacity", "0");
+    $(newImg).css("opacity", "1");
 }

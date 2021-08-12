@@ -174,17 +174,66 @@ section
     background-image: url("../imgs/work/laptop.svg");
 }
 
-.slide-img
+.device-bg
 {
     position: absolute;
     width: 38vw;
     height: 82vh;
-    z-index: -1;
+    z-index: -10;
 
-    background-image: url("../imgs/work/topforms/topforms_1.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50% 50%;
+}
+
+.device-bg.tablet-bg
+{
+    background-image: url("../imgs/work/tablet_bg.png");
+}
+
+.slide-img
+{
+    position: absolute;
+    
+    width: 38vw;
+    height: 82vh;
+    z-index: -1;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    opacity: 0;
+}
+
+#topforms-imgs .slide-img:nth-child(1)
+{
+    background-image: url("../imgs/work/topforms/topforms_1.png");
+    opacity: 1;
+}
+
+#topforms-imgs .slide-img:nth-child(2)
+{
+    background-image: url("../imgs/work/topforms/topforms_2.png");
+}
+
+#topforms-imgs .slide-img:nth-child(3)
+{
+    background-image: url("../imgs/work/topforms/topforms_3.png");
+}
+
+#topforms-imgs .slide-img:nth-child(4)
+{
+    background-image: url("../imgs/work/topforms/topforms_4.png");
+}
+
+#topforms-imgs .slide-img:nth-child(5)
+{
+    background-image: url("../imgs/work/topforms/topforms_5.png");
+}
+
+#topforms-imgs .slide-img:nth-child(6)
+{
+    background-image: url("../imgs/work/topforms/topforms_6.png");
 }
 
 .work-arrows-container
@@ -216,13 +265,13 @@ section
     background-position: 50% 50%;
     top: 0px;
     transform: translateY(0px);
-    cursor: pointer;
 }
 
 .tablet .back-arrow,
 .tablet .forward-arrow
 {
     height: 4.5vh;
+    width: calc(0.483 * 4.5vh);
     margin-top: 75.2vh;
 }
 
@@ -230,6 +279,7 @@ section
 .laptop .forward-arrow
 {
     height: 2.9vh;
+    width: calc(0.483 * 2.9vh);
     margin-top: 57vh;
 }
 
@@ -238,12 +288,15 @@ section
     background-image: url("../imgs/work/back_arrow.svg");
     margin-left: -24px;
     opacity: 0.3;
+    margin-left: 45%;
 }
 
 .forward-arrow
 {
     background-image: url("../imgs/work/forward_arrow.svg");
     margin-left: 24px;
+    margin-left: 55%;
+    cursor: pointer;
 }
 
 .work-text-container
