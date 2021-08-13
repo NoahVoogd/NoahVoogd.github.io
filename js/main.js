@@ -15,7 +15,7 @@ var typeSpeed = 250;
 var dotColor;
 
 var laptopScrollTop = 0;
-var laptopScrollBottom = 0;
+//var laptopScrollBottom = 0;
 
 
 for (let i = 0; i < work.length; i++) 
@@ -135,12 +135,21 @@ function setup()
     var laptopFrameBottom = laptopHeight * 0.21;
     var laptopScreenHeight = laptopWidth * 0.47 + deviceTopMargin + laptopFrameTop;
     laptopScrollTop = deviceTopMargin + laptopFrameTop;
-    var imageHeight = laptopWidth * 1;
-    laptopScrollBottom = -(imageHeight - laptopHeight) / 2 - laptopFrameBottom;
+
     $(".scroll-imgs .slide-img").css("background-position", "0% " + laptopScrollTop + "px");
     $(".scroll-imgs .slide-img").css({
         "-webkit-clip-path": "polygon(0 " + laptopScrollTop + "px, 100% " + laptopScrollTop + "px, 100% " + laptopScreenHeight + "px, 0 " + laptopScreenHeight + "px)",
         "clip-path": "polygon(0 " + laptopScrollTop + "px, 100% " + laptopScrollTop + "px, 100% " + laptopScreenHeight + "px, 0 " + laptopScreenHeight + "px)"
+    });
+
+    $(".scroll-imgs .slide-img").each(function()
+    {
+        var ratio = $(this).attr("class").split(' ')[1];
+        var imageHeight = laptopWidth * ratio;
+        
+        var laptopScrollBottom = -((Math.abs(imageHeight - laptopHeight) / 2) - (($(".device-container.laptop").height() - imageHeight) / 2)) - laptopFrameBottom;
+        console.log(imageHeight, laptopHeight, Math.abs($(".device-container.laptop").height()), laptopFrameBottom);
+        $(this).attr("scroll-bottom", laptopScrollBottom);
     });
 }
 
@@ -434,7 +443,6 @@ $(".forward-arrow").click(function()
 
 function animateSlide(element, direction)
 {
-    console.log(direction);
     var slideContainer = $(element).parent().parent().find(".slide-img-container");
     var slideCount = $(slideContainer).children().length;
     var currentImg;
@@ -516,12 +524,21 @@ function animateWorkScroll(work, cur, scrollVal)
     {
         var bgPos = $(work).css("background-position");
         var bgPosY = bgPos.split(' ')[1].split('px')[0];
+
+        var currentImg;
+        $(work).each(function()
+        {
+            if($(this).css("opacity") == "1")
+            {
+                currentImg = $(this);
+            }
+        });
         
         //Scroll down
         if (scrollVal > 0)
         {
             var scrollPx = parseInt(bgPosY) - 1;
-            if (scrollPx > laptopScrollBottom)
+            if (scrollPx > $(currentImg).attr("scroll-bottom"))
             {
                 $(work).css("background-position", "0% " + scrollPx + "px");
                 if (cur < scrollVal)
@@ -531,7 +548,7 @@ function animateWorkScroll(work, cur, scrollVal)
             }
             else
             {
-                $(work).css("background-position", "0% " + laptopScrollBottom + "px");
+                $(work).css("background-position", "0% " + $(currentImg).attr("scroll-bottom") + "px");
             }
         }
         else
