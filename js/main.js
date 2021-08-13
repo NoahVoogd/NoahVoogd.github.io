@@ -14,6 +14,10 @@ var deleteSpeed = 100;
 var typeSpeed = 250;
 var dotColor;
 
+var laptopScrollTop = 0;
+var laptopScrollBottom = 0;
+
+
 for (let i = 0; i < work.length; i++) 
 {
     pageNames.splice(1 + i, 0, work[i]);
@@ -89,6 +93,54 @@ function setup()
         "margin-top": laptopArrowTop + "px",
         "height": 0.052 * laptopHeight,
         "width": 0.483 * (0.052 * laptopHeight)
+    });
+
+    $(".tablet .back-arrow, .laptop .back-arrow").css({
+        "margin-left": "calc(45% -" + (0.483 * (0.052 * laptopHeight)) + "px)"
+    });
+
+    $(".tablet .forward-arrow, .laptop .forward-arrow").css({
+        "margin-left": "calc(55% -" + (0.483 * (0.052 * laptopHeight)) + "px)"
+    });
+
+    var laptopWidth = $(".device-container.laptop").width();
+    var laptopHeight = $(".device-container.laptop").height();
+
+    if (laptopWidth / laptopHeight > 1.539)
+    {
+        laptopWidth = laptopHeight * 1.539;
+    }
+    else
+    {
+        laptopHeight = laptopWidth * 0.649;
+    }
+
+    $(".device-container.laptop").each(function()
+    {
+        var scrollTrigger = $(this).find('.scroll-trigger');
+
+        if (scrollTrigger.length)
+        {
+            $(scrollTrigger).css("margin-top", "-" + (laptopHeight * 0.0682) + "px");        
+            var leftMarg = ($(".device-container.laptop").width() - laptopWidth) / 2;
+            $(scrollTrigger).css("margin-left", leftMarg + laptopWidth * 0.107);
+
+            $(scrollTrigger).css("width", laptopWidth * 0.786);
+            $(scrollTrigger).css("height", laptopHeight * 0.722);
+        }
+    });
+
+    var deviceTopMargin = ($(".device-container.laptop").height() - laptopHeight) / 2;
+    var laptopFrameTop = laptopHeight * 0.069;
+    var laptopFrameBottom = laptopHeight * 0.21;
+    var laptopScreenHeight = laptopWidth * 0.47 + deviceTopMargin + laptopFrameTop;
+    laptopScrollTop = deviceTopMargin + laptopFrameTop;
+    var imageHeight = laptopWidth * 1;
+    laptopScrollBottom = -(imageHeight - laptopHeight) / 2 - laptopFrameBottom;
+    $(".scroll-imgs .slide-img").css("background-position", "0% " + laptopScrollTop + "px");
+    $(".scroll-imgs .slide-img").css({
+        "-webkit-clip-path": "polygon(0 " + laptopScrollTop + "px, 100% " + laptopScrollTop + "px, 100% " + laptopScreenHeight + "px, 0 " + laptopScreenHeight + "px)",
+        "clip-path": "polygon(0 " + laptopScrollTop + "px, 100% " + laptopScrollTop + "px, 100% " + laptopScreenHeight + "px, 0 " + laptopScreenHeight + "px)"
     });
 }
 
@@ -434,4 +486,69 @@ function animateSlide(element, direction)
 
     $(currentImg).css("opacity", "0");
     $(newImg).css("opacity", "1");
+
+    $(".scroll-imgs .slide-img").css("background-position", "0% " + laptopScrollTop + "px");
+}
+
+var insideDevice = false;
+var device;
+
+$(".scroll-trigger").mouseenter(function(e)
+{
+    insideDevice = true;
+    device = $(this);
+})
+
+$(".scroll-trigger").mouseleave(function(e)
+{
+    insideDevice = false;
+    device = $(this);
+})
+
+function handleWorkScroll(e)
+{
+    animateWorkScroll($(device).parent().find(".slide-img-container").find(".slide-img"), 0, e.deltaY / 4);
+}
+
+function animateWorkScroll(work, cur, scrollVal)
+{
+    setTimeout(() => 
+    {
+        var bgPos = $(work).css("background-position");
+        var bgPosY = bgPos.split(' ')[1].split('px')[0];
+        
+        //Scroll down
+        if (scrollVal > 0)
+        {
+            var scrollPx = parseInt(bgPosY) - 1;
+            if (scrollPx > laptopScrollBottom)
+            {
+                $(work).css("background-position", "0% " + scrollPx + "px");
+                if (cur < scrollVal)
+                {
+                    animateWorkScroll(work, cur + 1, scrollVal);
+                }
+            }
+            else
+            {
+                $(work).css("background-position", "0% " + laptopScrollBottom + "px");
+            }
+        }
+        else
+        {
+            var scrollPx = parseInt(bgPosY) + 1;
+            if (scrollPx < laptopScrollTop)
+            {
+                $(work).css("background-position", "0% " + scrollPx + "px");
+                if (cur > scrollVal)
+                {
+                    animateWorkScroll(work, cur - 1, scrollVal);
+                }
+            }
+            else
+            {
+                $(work).css("background-position", "0% " + laptopScrollTop + "px");
+            }
+        }
+    }, 1);
 }

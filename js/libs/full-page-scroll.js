@@ -159,7 +159,7 @@ var canScroll = true;
 
 		this.mouseWheelAndKey = function (event) 
 		{
-			if (canScroll)
+			if (canScroll && !insideDevice)
 			{
 				canScroll = false;
 				if (event.deltaY > 0 || event.keyCode == 40) {	
@@ -169,8 +169,15 @@ var canScroll = true;
 					_self.defaults.currentPosition --;
 					_self.changeCurrentPosition(_self.defaults.currentPosition);	
 				}
+
+				_self.removeEvents();
 			}
-			_self.removeEvents();
+			
+
+			if (insideDevice)
+			{
+				handleWorkScroll(event);
+			}
 		};
 
 		this.touchStart = function (event) {
@@ -198,7 +205,15 @@ var canScroll = true;
 				if (anchorIndex !== "") {
 					_self.defaults.currentPosition = anchorIndex;
 					_self.animateScroll();				
+				}
+				else
+				{
+					canScroll = true;
 				}				
+			}
+			else
+			{
+				canScroll = true;
 			}
 		};
 
