@@ -304,7 +304,7 @@ section
     background-image: url("../imgs/work/klantenhuis/klantenhuis_3.png");
 }
 
-#ggzopweg-imgs .slide-img
+.scroll-imgs .slide-img
 {
     background-size: 100% auto;
     background-position: 0% 25vh;
