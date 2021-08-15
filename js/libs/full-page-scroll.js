@@ -168,11 +168,10 @@ var lastNewScroll = 0;
 			{
 				if (now - previousScroll < 500 && previousDeltaY != 0 && (event.deltaY > 0) == (previousDeltaY > 0) && now - lastNewScroll < 2000)
 				{
-					//console.log("Same scroll");
+
 				}
 				else
 				{
-					//console.log("New scroll");
 					lastNewScroll = now;
 
 					if (event.deltaY > 0 || event.keyCode == 40) {	

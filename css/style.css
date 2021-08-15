@@ -790,6 +790,36 @@ section
     width: calc(100% - 80px);
 }
 
+#contact-header
+{
+    position: fixed;
+    z-index: 2000;
+    width: 100vw;
+    text-align: right;
+    padding: 30px;;
+}
+
+#header-mail
+{
+    color: #fafafa;
+    margin-left: 35px;
+    font-weight: 300;
+}
+
+#header-linkedin
+{
+    background-color: #fafafa;
+    color: #FFCC33;
+    text-decoration: none;
+    -webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    padding: 8px 20px;
+}
+
 #coffee-title
 {
     font-weight: 700;
@@ -864,3 +894,6 @@ span
     font-style: normal;
     color: #fff;
 }
+
+/*---------------------------------------------*/
+

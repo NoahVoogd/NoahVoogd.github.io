@@ -147,7 +147,6 @@ function setup()
         var imageHeight = laptopWidth * ratio;
         
         var laptopScrollBottom = -((Math.abs(imageHeight - laptopHeight) / 2) - (($(".device-container.laptop").height() - imageHeight) / 2)) - laptopFrameBottom;
-        console.log(imageHeight, laptopHeight, Math.abs($(".device-container.laptop").height()), laptopFrameBottom);
         $(this).attr("scroll-bottom", laptopScrollBottom);
     });
 }
@@ -262,10 +261,12 @@ function adjustDotColor()
 {
     setTimeout(function() {
         dotColor = "#fafafa";
+        $("#contact-header").show();
 
         if (curPage.endsWith('#who'))
         {
             dotColor = "#333333";   
+            $("#contact-header").hide();
         }
         else if (curPage.endsWith("#ggzopweg"))
         {
@@ -277,6 +278,13 @@ function adjustDotColor()
         $(".dots li a").css("color", dotColor);
         $(".dots li a").css("border-color", dotColor);
         $(".dot-connector").css("background-color", dotColor);
+
+        $("#header-mail").css("color", dotColor);
+        $("#header-linkedin").css("background-color", dotColor);
+
+        var pageTag = curPage.split('#')[1];
+        $("#header-linkedin").css("color", $("#section-" + pageTag).css("background-color"));
+
     }, 300);
 }
 
