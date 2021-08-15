@@ -1,5 +1,9 @@
 var curPagePosition = -1;
 var canScroll = true;
+var previousScroll = 0;
+var previousDeltaY = 0;
+var lastNewScroll = 0;
+
 
 /**
  * Full page
@@ -159,7 +163,36 @@ var canScroll = true;
 
 		this.mouseWheelAndKey = function (event) 
 		{
-			if (canScroll && !insideDevice)
+			var now = Date.now();
+			if (!insideDevice)
+			{
+				if (now - previousScroll < 500 && previousDeltaY != 0 && (event.deltaY > 0) == (previousDeltaY > 0) && now - lastNewScroll < 2000)
+				{
+					//console.log("Same scroll");
+				}
+				else
+				{
+					//console.log("New scroll");
+					lastNewScroll = now;
+
+					if (event.deltaY > 0 || event.keyCode == 40) {	
+						_self.defaults.currentPosition ++;
+						_self.changeCurrentPosition(_self.defaults.currentPosition);				
+					} else if (event.deltaY < 0 || event.keyCode == 38) {
+						_self.defaults.currentPosition --;
+						_self.changeCurrentPosition(_self.defaults.currentPosition);	
+					}
+				}
+			}
+			else
+			{
+				handleWorkScroll(event);
+			}
+
+			previousScroll = now;
+			previousDeltaY = event.deltaY;
+
+			/*if ((canScroll && !insideDevice) || (location.hash == "#hi" || location.hash == "#who"))
 			{
 				canScroll = false;
 				if (event.deltaY > 0 || event.keyCode == 40) {	
@@ -171,13 +204,7 @@ var canScroll = true;
 				}
 
 				_self.removeEvents();
-			}
-			
-
-			if (insideDevice)
-			{
-				handleWorkScroll(event);
-			}
+			}*/
 		};
 
 		this.touchStart = function (event) {
@@ -205,15 +232,7 @@ var canScroll = true;
 				if (anchorIndex !== "") {
 					_self.defaults.currentPosition = anchorIndex;
 					_self.animateScroll();				
-				}
-				else
-				{
-					canScroll = true;
-				}				
-			}
-			else
-			{
-				canScroll = true;
+				}		
 			}
 		};
 
@@ -259,7 +278,7 @@ var canScroll = true;
 			setTimeout(() => {
 				//Allow scrolling again once the animation is done
 				canScroll = true;
-			}, animateTime * 1000);
+			}, animateTime * 2000);
 		};
 
 		this.changeCurrentPosition = function (position) {
