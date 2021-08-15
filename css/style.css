@@ -334,7 +334,22 @@ section
 #jam-imgs .slide-img:nth-child(1)
 {
     background-image: url("../imgs/work/jam/jam_1.gif");
-    opacity: 1
+    opacity: 1;
+}
+
+#jam-imgs .slide-img:nth-child(2)
+{
+    background-image: url("../imgs/work/jam/jam_2.png");
+}
+
+#jam-imgs .slide-img:nth-child(3)
+{
+    background-image: url("../imgs/work/jam/jam_3.png");
+}
+
+#jam-imgs .slide-img:nth-child(4)
+{
+    background-image: url("../imgs/work/jam/jam_4.png");
 }
 
 .work-arrows-container

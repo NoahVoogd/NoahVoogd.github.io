@@ -63,7 +63,6 @@ function setup()
 
     $(".work-text-container").each(function()
     {
-        //console.log(window.innerHeight, "calc(50% -" + $(this).height(), (window.innerHeight - $(this).height()) / 2 + ")");
         $(this).css("top", "calc(50% -" + ((window.innerHeight - $(this).height()) / 2) + ")");
     });
 
