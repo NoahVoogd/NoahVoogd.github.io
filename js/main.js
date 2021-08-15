@@ -318,14 +318,14 @@ function showWork()
         setTimeout(() => 
         {
             $(".work-dot").css("display", "block");
-            $("#what-dot").css("background-color", "#fafafa");
+            $("#what-dot").css("background-color", dotColor);
             $('.work-dot').each(function()
             {
                 if ($(this).attr("id") == "topforms-work-dot")
                 {
                     if (tag == "topforms")
                     {
-                        $("#topforms-work-dot").css("background-color", "#fafafa");
+                        $("#topforms-work-dot").css("background-color", dotColor);
                     }
                 }
             })

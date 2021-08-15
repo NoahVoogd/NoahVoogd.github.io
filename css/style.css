@@ -331,6 +331,12 @@ section
     background-image: url("../imgs/work/ggzopweg/ggzopweg_4.png");
 }
 
+#jam-imgs .slide-img:nth-child(1)
+{
+    background-image: url("../imgs/work/jam/jam_1.gif");
+    opacity: 1
+}
+
 .work-arrows-container
 {
     position: absolute;
@@ -466,7 +472,17 @@ section
 
 #section-parsafix
 {
-    background-color: #C12024;
+    background-color: #0b74a9;
+}
+
+#section-parsafix .work-text-container
+{
+    /*color: #121212 !important;*/
+}
+
+#section-parsafix .work-text a
+{
+    /*color: #121212;*/
 }
 
 /*Klantenhuis----------------------------------*/
@@ -492,7 +508,7 @@ section
 
 #section-jam
 {
-    background-color: #324465;
+    background-color: #a32a30;
 }
 
 /*HOW------------------------------------------*/
