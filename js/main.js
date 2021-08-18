@@ -155,13 +155,18 @@ activateScroll();
 
 function activateScroll()
 {
-    new fullScroll({
-        mainElement: "main",
-        displayDots: true,
-        dotsPosition: "left",
-        animateTime: 0.7,
-        animateFunction: "ease",
-    });
+    if (window.innerWidth / window.innerHeight > 1)
+    {
+        new fullScroll({
+            mainElement: "main",
+            displayDots: true,
+            dotsPosition: "left",
+            animateTime: 0.7,
+            animateFunction: "ease",
+        });
+    }
+
+    windowResize();
 }
 
 $(window).scroll(function (event) {
@@ -201,6 +206,39 @@ function windowResize()
     document.getElementById('landing-page-canvas').width  = window.innerWidth;
     document.getElementById('landing-page-canvas').height = window.innerHeight;
     setup();
+
+    if (window.innerWidth / window.innerHeight < 1 || window.innerHeight < 800)
+    {
+        onePageScrollActive = false;
+
+        $("body").css({
+            "overflow-y":"scroll",
+            "overflow-x":"hidden"
+        });
+
+        $("section").css({
+            "overflow-y":"hidden",
+            "overflow-x":"hidden"
+        });
+
+        $("#scroll-icon").prop("src", "imgs/landing_page/scroll_icon_mobile.svg");
+    }
+    else
+    {
+        onePageScrollActive = true;
+
+        $("body").css({
+            "overflow-y":"hidden",
+            "overflow-x":"hidden"
+        });
+
+        $("section").css({
+            "overflow-y":"hidden",
+            "overflow-x":"hidden"
+        });
+
+        $("#scroll-icon").prop("src", "imgs/landing_page/scroll_icon_css.svg");
+    }
 };
   
 window.addEventListener('resize', windowResize);
@@ -280,11 +318,7 @@ function adjustDotColor()
         $(".dot-connector").css("background-color", dotColor);
 
         $("#header-mail").css("color", dotColor);
-        $("#header-linkedin").css("background-color", dotColor);
-
-        var pageTag = curPage.split('#')[1];
-        $("#header-linkedin").css("color", $("#section-" + pageTag).css("background-color"));
-
+        $("#contact-header svg path").css("fill", dotColor);
     }, 300);
 }
 

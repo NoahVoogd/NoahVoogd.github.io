@@ -1,3 +1,5 @@
+var onePageScrollActive = true;
+
 var curPagePosition = -1;
 var canScroll = true;
 var previousScroll = 0;
@@ -163,47 +165,36 @@ var lastNewScroll = 0;
 
 		this.mouseWheelAndKey = function (event) 
 		{
-			var now = Date.now();
-			if (!insideDevice)
+			if (onePageScrollActive)
 			{
-				if (now - previousScroll < 500 && previousDeltaY != 0 && (event.deltaY > 0) == (previousDeltaY > 0) && now - lastNewScroll < 2000)
+				var now = Date.now();
+				if (!insideDevice)
 				{
+					if (now - previousScroll < 500 && previousDeltaY != 0 && (event.deltaY > 0) == (previousDeltaY > 0) && now - lastNewScroll < 2000)
+					{
 
+					}
+					else
+					{
+						lastNewScroll = now;
+
+						if (event.deltaY > 0 || event.keyCode == 40) {	
+							_self.defaults.currentPosition ++;
+							_self.changeCurrentPosition(_self.defaults.currentPosition);				
+						} else if (event.deltaY < 0 || event.keyCode == 38) {
+							_self.defaults.currentPosition --;
+							_self.changeCurrentPosition(_self.defaults.currentPosition);	
+						}
+					}
 				}
 				else
 				{
-					lastNewScroll = now;
-
-					if (event.deltaY > 0 || event.keyCode == 40) {	
-						_self.defaults.currentPosition ++;
-						_self.changeCurrentPosition(_self.defaults.currentPosition);				
-					} else if (event.deltaY < 0 || event.keyCode == 38) {
-						_self.defaults.currentPosition --;
-						_self.changeCurrentPosition(_self.defaults.currentPosition);	
-					}
-				}
-			}
-			else
-			{
-				handleWorkScroll(event);
-			}
-
-			previousScroll = now;
-			previousDeltaY = event.deltaY;
-
-			/*if ((canScroll && !insideDevice) || (location.hash == "#hi" || location.hash == "#who"))
-			{
-				canScroll = false;
-				if (event.deltaY > 0 || event.keyCode == 40) {	
-					_self.defaults.currentPosition ++;
-					_self.changeCurrentPosition(_self.defaults.currentPosition);				
-				} else if (event.deltaY < 0 || event.keyCode == 38) {
-					_self.defaults.currentPosition --;
-					_self.changeCurrentPosition(_self.defaults.currentPosition);	
+					handleWorkScroll(event);
 				}
 
-				_self.removeEvents();
-			}*/
+				previousScroll = now;
+				previousDeltaY = event.deltaY;
+			}
 		};
 
 		this.touchStart = function (event) {
@@ -212,15 +203,18 @@ var lastNewScroll = 0;
 		};
 
 		this.touchEnd = function (event) {
-			mTouchEnd = parseInt(event.changedTouches[0].clientY);
-			if (mTouchEnd - mTouchStart > 100 || mTouchStart - mTouchEnd > 100) {
-				if (mTouchEnd > mTouchStart) {
-					_self.defaults.currentPosition --;
-				} else {
-					_self.defaults.currentPosition ++;					
-				}
-				_self.changeCurrentPosition(_self.defaults.currentPosition);
-			}			
+			if (onePageScrollActive)
+			{
+				mTouchEnd = parseInt(event.changedTouches[0].clientY);
+				if (mTouchEnd - mTouchStart > 100 || mTouchStart - mTouchEnd > 100) {
+					if (mTouchEnd > mTouchStart) {
+						_self.defaults.currentPosition --;
+					} else {
+						_self.defaults.currentPosition ++;					
+					}
+					_self.changeCurrentPosition(_self.defaults.currentPosition);
+				}		
+			}	
 		};
 
 		this.hashChange = function (event) {

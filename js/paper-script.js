@@ -15,27 +15,30 @@ path2.fillColor = '#FC004A';
 
 function onMouseMove(event) 
 {
-	var step = event.delta / 2;
-	step.angle += 90;
-	
-	var top = event.middlePoint + step;
-	var bottom = event.middlePoint - step;
-	
-	path.add(top);
-	path.insert(0, bottom);
-	path.smooth();
+	if(onePageScrollActive)
+	{
+		var step = event.delta / 2;
+		step.angle += 90;
+		
+		var top = event.middlePoint + step;
+		var bottom = event.middlePoint - step;
+		
+		path.add(top);
+		path.insert(0, bottom);
+		path.smooth();
 
-	path2.add(top);
-	path2.insert(0, bottom);
-	path2.smooth();
+		path2.add(top);
+		path2.insert(0, bottom);
+		path2.smooth();
 
-	if (whoMask != null)
-	{ 
-		whoMask.fillColor = '#FFCC33';
-	}
-	if (whatMask != null)
-	{ 
-		whatMask.fillColor = '#FFCC33';
+		if (whoMask != null)
+		{ 
+			whoMask.fillColor = '#FFCC33';
+		}
+		if (whatMask != null)
+		{ 
+			whatMask.fillColor = '#FFCC33';
+		}
 	}
 }
 
