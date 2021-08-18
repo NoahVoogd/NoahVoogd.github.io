@@ -743,11 +743,6 @@ section
     }
 }
 
-#about .main-text div
-{
-    
-}
-
 #about ul
 {
     margin-top: 2vh;
@@ -925,7 +920,8 @@ span
     }
 }
 
-@media only screen and (max-width: 600px) 
+@media only screen and (max-width: 600px),
+screen and (max-height: 600px)
 {
     .work-text
     {
@@ -1009,7 +1005,7 @@ span
 
     #contact-header
     {
-        background-color: #FFCC33;
+        /*background-color: #FFCC33;*/
         text-align: center;
         padding: 10px;
     }

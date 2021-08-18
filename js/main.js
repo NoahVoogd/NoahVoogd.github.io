@@ -155,7 +155,9 @@ activateScroll();
 
 function activateScroll()
 {
-    if (window.innerWidth / window.innerHeight > 1)
+    windowResize();
+
+    if (onePageScrollActive)
     {
         new fullScroll({
             mainElement: "main",
@@ -164,13 +166,30 @@ function activateScroll()
             animateTime: 0.7,
             animateFunction: "ease",
         });
-    }
-
-    windowResize();
+    }    
 }
 
-$(window).scroll(function (event) {
-    var scroll = $(window).scrollTop();
+$("body").scroll(function (event) 
+{
+    if (!onePageScrollActive)
+    {
+        var scroll = $("body").scrollTop();
+  
+        if ($("#section-hi").offset().top + $("#section-hi").height() - 40 > 0)
+        {
+            $("#contact-header").css("background-color", "transparent")
+            $("#contact-header").show();
+        }
+        else if ($("#section-who").offset().top < 60)
+        {
+            $("#contact-header").css("background-color", "#212529")
+            $("#contact-header").show();
+        }
+        else
+        {
+            $("#contact-header").hide();
+        }
+    }
 });
 
 document.onmousemove = handleMouseMove;
@@ -207,7 +226,9 @@ function windowResize()
     document.getElementById('landing-page-canvas').height = window.innerHeight;
     setup();
 
-    if (window.innerWidth / window.innerHeight < 1 || window.innerHeight < 800)
+    console.log("width", window.innerWidth, "height", window.innerHeight, window.innerWidth / window.innerHeight);
+
+    if ((window.innerWidth / window.innerHeight < 1 && window.innerWidth < 600) || window.innerWidth < 600 || window.innerHeight < 600)
     {
         onePageScrollActive = false;
 
