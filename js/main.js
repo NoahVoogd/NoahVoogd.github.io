@@ -7,7 +7,6 @@ var skills = {
 };
 var varNames = ["whatImGoodAt", "whatIveWorkedWith", "myToolKit", "whatMakesTheWorldGoRound"];
 var varNameIndex = 0;
-var mousePos = {x: -1, y: -1}
 var curPage;
 var viewingWork = false;
 var deleteSpeed = 100;
@@ -15,22 +14,36 @@ var typeSpeed = 250;
 var dotColor;
 
 var touchScrollStart = 0;
-
 var laptopScrollTop = 0;
-//var laptopScrollBottom = 0;
 
+var insideDevice = false;
+var device;
 
+//Add the work list to the list of pages
 for (let i = 0; i < work.length; i++) 
 {
     pageNames.splice(1 + i, 0, work[i]);
 }
 
+//--------------------------------------------
+// Upon loading the page
+//--------------------------------------------
 window.addEventListener("load", function()
 {
     curPage = window.location.href;
 
+    //Setup page elements
     setup();
 
+    //Start the animation in the code section
+    varAnimation();
+});
+
+//--------------------------------------------
+// Sets up the variable page elements
+//--------------------------------------------
+function setup()
+{
     for (const skillSet in skills) 
     {
         for (let i = 0; i < skills[skillSet].length; i++) 
@@ -49,11 +62,6 @@ window.addEventListener("load", function()
         x++;
     });
 
-    varAnimation();
-});
-
-function setup()
-{
     if (window.innerWidth > 1815)
     {
         $("#introduction").html("I'm Noah Voogd, a 26 year old creative developer<br>living in Utrecht, the Netherlands.")
@@ -160,6 +168,9 @@ function setup()
 
 activateScroll();
 
+//--------------------------------------------
+// Activates "one page" scrolling
+//--------------------------------------------
 function activateScroll()
 {
     windowResize();
@@ -176,10 +187,14 @@ function activateScroll()
     }    
 }
 
+//--------------------------------------------
+// When a scroll is triggered on the body
+//--------------------------------------------
 $("body").scroll(function (event) 
 {
     if (!onePageScrollActive)
     { 
+        //Adjust the contact header
         if ($("#section-hi").offset().top + $("#section-hi").height() - 40 > 0)
         {
             $("#contact-header").css("background-color", "transparent")
@@ -197,41 +212,14 @@ $("body").scroll(function (event)
     }
 });
 
-document.onmousemove = handleMouseMove;
-
-function handleMouseMove(event) 
-{
-    var eventDoc, doc, body;
-
-    event = event || window.event; // IE-ism
-
-    // If pageX/Y aren't available and clientX/Y are,
-    // calculate pageX/Y - logic taken from jQuery.
-    // (This is to support old IE)
-    if (event.pageX == null && event.clientX != null) {
-        eventDoc = (event.target && event.target.ownerDocument) || document;
-        doc = eventDoc.documentElement;
-        body = eventDoc.body;
-
-        event.pageX = event.clientX +
-            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
-            (doc && doc.clientLeft || body && body.clientLeft || 0);
-        event.pageY = event.clientY +
-            (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
-            (doc && doc.clientTop  || body && body.clientTop  || 0 );
-    }
-
-    mousePos.x = event.pageX;
-    mousePos.y = event.pageY;
-}
-
+//--------------------------------------------
+// When the window is resized
+//--------------------------------------------
 function windowResize() 
 {
     document.getElementById('landing-page-canvas').width  = window.innerWidth;
     document.getElementById('landing-page-canvas').height = window.innerHeight;
     setup();
-
-    console.log("width", window.innerWidth, "height", window.innerHeight, window.innerWidth / window.innerHeight);
 
     if ((window.innerWidth / window.innerHeight < 1 && window.innerWidth < 600) || window.innerWidth < 600 || window.innerHeight < 600)
     {
@@ -272,16 +260,25 @@ function windowResize()
   
 window.addEventListener('resize', windowResize);
 
+//--------------------------------------------
+// When the "who trigger" is clicked
+//--------------------------------------------
 $("#who-click").click(function()
 {
     window.location.href = '/#who';
 });
 
+//--------------------------------------------
+// When the "what trigger" is clicked
+//--------------------------------------------
 $("#what-click").click(function()
 {
     window.location.href = '/#topforms';
 });
 
+//--------------------------------------------
+// When the mouse hovers over a menu dot
+//--------------------------------------------
 $('.dots a').hover(function()
 {
     var title = $(this).attr('href').replace('#', '');
@@ -324,6 +321,9 @@ function()
     }, 150);
 });
 
+//--------------------------------------------
+// Update colors based on what page we're on
+//--------------------------------------------
 function adjustDotColor()
 {
     setTimeout(function() {
@@ -351,6 +351,9 @@ function adjustDotColor()
     }, 300);
 }
 
+//--------------------------------------------
+// Display work pages
+//--------------------------------------------
 function showWork()
 {
     var tag = curPage.split('#');
@@ -413,6 +416,9 @@ function showWork()
     }
 }
 
+//--------------------------------------------
+// When the popstate event fires
+//--------------------------------------------
 window.addEventListener('popstate', function()
 {
     curPage = window.location.href;
@@ -421,6 +427,9 @@ window.addEventListener('popstate', function()
     showWork();
 });
 
+//--------------------------------------------
+// Handles the animation in the code section
+//--------------------------------------------
 function varAnimation()
 {
     setTimeout(() => 
@@ -454,6 +463,9 @@ function varAnimation()
     }, 3500);
 }
 
+//--------------------------------------------
+// Deletes a letter in the animation
+//--------------------------------------------
 function deleteLetter(newText, callback)
 {
     var curVarName = $("#var-name").html();
@@ -482,6 +494,9 @@ function deleteLetter(newText, callback)
     }
 }
 
+//--------------------------------------------
+// Adds a letter in the animation
+//--------------------------------------------
 function addLetter(newText, callback)
 {
     var curVarName = $("#var-name").html();
@@ -501,16 +516,25 @@ function addLetter(newText, callback)
     }
 }
 
+//--------------------------------------------
+// When a back arrow is clicked
+//--------------------------------------------
 $(".back-arrow").click(function()
 {
     animateSlide($(this), -1);
 });
 
+//--------------------------------------------
+// When a forward arrow is clicked
+//--------------------------------------------
 $(".forward-arrow").click(function()
 {
     animateSlide($(this), 1);
 });
 
+//--------------------------------------------
+// Animates work slide transitions
+//--------------------------------------------
 function animateSlide(element, direction)
 {
     var slideContainer = $(element).parent().parent().find(".slide-img-container");
@@ -568,21 +592,27 @@ function animateSlide(element, direction)
     $(".scroll-imgs .slide-img").css("background-position", "0% " + laptopScrollTop + "px");
 }
 
-var insideDevice = false;
-var device;
-
+//--------------------------------------------
+// When the mouse enters a "scroll trigger"
+//--------------------------------------------
 $(".scroll-trigger").mouseenter(function(e)
 {
     insideDevice = true;
     device = $(this);
 });
 
+//--------------------------------------------
+// When the mouse leaves a "scroll trigger"
+//--------------------------------------------
 $(".scroll-trigger").mouseleave(function(e)
 {
     insideDevice = false;
     device = $(this);
 });
 
+//--------------------------------------------
+// When a touch starts on a "scroll trigger"
+//--------------------------------------------
 $(".scroll-trigger").on("touchstart", function(e)
 {
     e.preventDefault();
@@ -590,19 +620,26 @@ $(".scroll-trigger").on("touchstart", function(e)
     device = $(this);
 });
 
+//--------------------------------------------
+// When a drag happens on a "scroll trigger"
+//--------------------------------------------
 $(".scroll-trigger").on("touchmove", function(e)
 {
-    console.log(e.touches[0].clientY, e.touches[0].clientY - $(this).parent().offset().top, touchScrollStart);
     var delta = e.touches[0].clientY - touchScrollStart;
-    console.log(delta);
     handleWorkScroll(-delta / 4);
 });
 
+//--------------------------------------------
+// Handles a work scroll
+//--------------------------------------------
 function handleWorkScroll(deltaY)
 {
     animateWorkScroll($(device).parent().find(".slide-img-container").find(".slide-img"), 0, deltaY / 4);
 }
 
+//--------------------------------------------
+// Animates a work scroll
+//--------------------------------------------
 function animateWorkScroll(work, cur, scrollVal)
 {
     setTimeout(() => 
