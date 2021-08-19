@@ -189,7 +189,7 @@ var lastNewScroll = 0;
 				}
 				else
 				{
-					handleWorkScroll(event);
+					handleWorkScroll(event.deltaY);
 				}
 
 				previousScroll = now;

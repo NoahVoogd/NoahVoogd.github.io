@@ -14,6 +14,8 @@ var deleteSpeed = 100;
 var typeSpeed = 250;
 var dotColor;
 
+var touchScrollStart = 0;
+
 var laptopScrollTop = 0;
 //var laptopScrollBottom = 0;
 
@@ -117,10 +119,15 @@ function setup()
     $(".device-container.laptop").each(function()
     {
         var scrollTrigger = $(this).find('.scroll-trigger');
+        var scrollMargin = 0;
+        if (!onePageScrollActive)
+        {
+            scrollMargin = 30;
+        }
 
         if (scrollTrigger.length)
         {
-            $(scrollTrigger).css("margin-top", "-" + (laptopHeight * 0.0682) + "px");        
+            $(scrollTrigger).css("margin-top", (-laptopHeight * 0.0682 + scrollMargin) + "px");        
             var leftMarg = ($(".device-container.laptop").width() - laptopWidth) / 2;
             $(scrollTrigger).css("margin-left", leftMarg + laptopWidth * 0.107);
 
@@ -172,9 +179,7 @@ function activateScroll()
 $("body").scroll(function (event) 
 {
     if (!onePageScrollActive)
-    {
-        var scroll = $("body").scrollTop();
-  
+    { 
         if ($("#section-hi").offset().top + $("#section-hi").height() - 40 > 0)
         {
             $("#contact-header").css("background-color", "transparent")
@@ -243,6 +248,7 @@ function windowResize()
         });
 
         $("#scroll-icon").prop("src", "imgs/landing_page/scroll_icon_mobile.svg");
+        $("#scroll-icon").show();
     }
     else
     {
@@ -260,6 +266,8 @@ function windowResize()
 
         $("#scroll-icon").prop("src", "imgs/landing_page/scroll_icon_css.svg");
     }
+
+    $("#scroll-icon").show();
 };
   
 window.addEventListener('resize', windowResize);
@@ -567,17 +575,32 @@ $(".scroll-trigger").mouseenter(function(e)
 {
     insideDevice = true;
     device = $(this);
-})
+});
 
 $(".scroll-trigger").mouseleave(function(e)
 {
     insideDevice = false;
     device = $(this);
-})
+});
 
-function handleWorkScroll(e)
+$(".scroll-trigger").on("touchstart", function(e)
 {
-    animateWorkScroll($(device).parent().find(".slide-img-container").find(".slide-img"), 0, e.deltaY / 4);
+    e.preventDefault();
+    touchScrollStart = e.touches[0].clientY;
+    device = $(this);
+});
+
+$(".scroll-trigger").on("touchmove", function(e)
+{
+    console.log(e.touches[0].clientY, e.touches[0].clientY - $(this).parent().offset().top, touchScrollStart);
+    var delta = e.touches[0].clientY - touchScrollStart;
+    console.log(delta);
+    handleWorkScroll(-delta / 4);
+});
+
+function handleWorkScroll(deltaY)
+{
+    animateWorkScroll($(device).parent().find(".slide-img-container").find(".slide-img"), 0, deltaY / 4);
 }
 
 function animateWorkScroll(work, cur, scrollVal)
