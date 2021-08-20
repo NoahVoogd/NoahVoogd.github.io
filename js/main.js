@@ -32,18 +32,7 @@ window.addEventListener("load", function()
 {
     curPage = window.location.href;
 
-    //Setup page elements
-    setup();
-
-    //Start the animation in the code section
-    varAnimation();
-});
-
-//--------------------------------------------
-// Sets up the variable page elements
-//--------------------------------------------
-function setup()
-{
+    //Fill in the skills
     for (const skillSet in skills) 
     {
         for (let i = 0; i < skills[skillSet].length; i++) 
@@ -62,6 +51,18 @@ function setup()
         x++;
     });
 
+    //Setup page elements
+    setup();
+
+    //Start the animation in the code section
+    varAnimation();
+});
+
+//--------------------------------------------
+// Sets up the variable page elements
+//--------------------------------------------
+function setup()
+{
     if (window.innerWidth > 1815)
     {
         $("#introduction").html("I'm Noah Voogd, a 26 year old creative developer<br>living in Utrecht, the Netherlands.")
